@@ -3,6 +3,7 @@
 /node_modules
 
 .env
+card-test.html
 
 # Logs
 logs
