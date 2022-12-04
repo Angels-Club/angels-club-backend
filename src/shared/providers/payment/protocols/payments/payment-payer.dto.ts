@@ -1,4 +1,4 @@
-export class PaymentPayerDto {
+export interface PaymentPayerDto {
   id?: string | undefined;
   first_name?: string | undefined;
   last_name?: string | undefined;

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import jwt from 'jsonwebtoken';
 import { JWT_EXPIRATION, JWT_SECRET } from 'src/env';
-import { RolesType } from '../../interfaces/';
+import { RolesType } from '../../types';
 
 interface ISignToken {
   id: string;

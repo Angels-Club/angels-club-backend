@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { MP_SECRET_KEY } from 'src/env';
 import * as mercadopago from 'mercadopago';
 import { CreatePaymentDto, CreatePaymentResponseDto } from './protocols';
+import { mercadoPagoInstance } from '../axios/axios-instance';
+import { CreateSignaturePlanDto } from './protocols/plans/create-plan.dto';
+import { CreateSignaturePlanResponseDto } from './protocols/plans/create-plan-response.dto';
 
 @Injectable()
 export class PaymentProvider {
@@ -15,7 +18,23 @@ export class PaymentProvider {
   async generatePayment(
     dto: CreatePaymentDto,
   ): Promise<CreatePaymentResponseDto> {
-    return (await mercadopago.payment.create(dto))
-      .body as CreatePaymentResponseDto;
+    try {
+      return (await mercadopago.payment.create(dto))
+        .body as CreatePaymentResponseDto;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async createPlan(
+    dto: CreateSignaturePlanDto,
+  ): Promise<CreateSignaturePlanResponseDto> {
+    try {
+      const response = await mercadoPagoInstance.post('/preapproval_plan', dto);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   }
 }
