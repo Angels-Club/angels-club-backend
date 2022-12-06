@@ -9,11 +9,186 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model admin {
-	id             String   @id @default(uuid())
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  name           String
-  email          String   @unique
-  password       String
+model Image {
+  id    String @id @default(uuid())
+  url   String @unique
+  s3Key String @unique
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  email     String   @unique
+  password  String
+}
+
+model User {
+  id                String              @id @default(uuid())
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  name              String
+  email             String              @unique
+  password          String
+  fantasyName       String
+  birthDate         String
+  profilePictureId  String?
+  PostComment       PostComment[]
+  PostCommentAnswer PostCommentAnswer[]
+  PostReaction      PostReaction[]
+}
+
+enum AccountStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  BLOCKED
+}
+
+model Angel {
+  id                    String                      @id @default(uuid())
+  createdAt             DateTime                    @default(now())
+  updatedAt             DateTime                    @updatedAt
+  name                  String
+  fantasyName           String?
+  slug                  String                      @unique
+  bio                   String?
+  birthDate             DateTime
+  email                 String                      @unique
+  password              String
+  phone                 String
+  cpf                   String                      @unique
+  profilePictureId      String?
+  coverPictureId        String?
+  accountStatus         AccountStatus
+  hasPaidSignature      Boolean
+  affiliateLink         String
+  accountBalance        Float
+  verificationDocuments AngelVerificationDocuments?
+  paidSignature         AngelPaidSignature?
+  angelBankData         AngelBankData?
+  packs                 Pack[]
+  posts                 Post[]
+}
+
+model AngelVerificationDocuments {
+  angel                Angel  @relation(fields: [angelId], references: [id])
+  angelId              String @unique
+  documentFrontImageId String
+  documentBackImageId  String
+}
+
+model AngelPaidSignature {
+  id                 String @id @default(uuid())
+  angel              Angel  @relation(fields: [angelId], references: [id])
+  angelId            String @unique
+  price              Float
+  trimestralDiscount Float
+  mercadoPagoPlanId  String
+}
+
+enum PixKeyCategory {
+  CPF
+  EMAIL
+  PHONE
+  RANDOM
+}
+
+model AngelBankData {
+  angel          Angel          @relation(fields: [angelId], references: [id])
+  angelId        String         @unique
+  bankCode       Int
+  bankName       String
+  bankAgency     Int
+  bankAccount    Int
+  pixKey         String
+  pixKeyCategory PixKeyCategory
+}
+
+model Pack {
+  id               String      @id @default(uuid())
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  angel            Angel       @relation(fields: [angelId], references: [id])
+  angelId          String      @unique
+  name             String
+  description      String
+  price            Float
+  thumbnailImageId String
+  media            PackMedia[]
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+}
+
+model PackMedia {
+  id        String    @id @default(uuid())
+  index     Int
+  pack      Pack      @relation(fields: [packId], references: [id])
+  packId    String
+  type      MediaType
+  fileUrl   String
+  fileS3Key String
+}
+
+enum PostCategory {
+  PUBLIC
+  PREMIUM
+}
+
+model Post {
+  id        String         @id @default(uuid())
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  angel     Angel          @relation(fields: [angelId], references: [id])
+  angelId   String         @unique
+  category  PostCategory
+  text      String
+  comments  PostComment[]
+  media     PostMedia[]
+  reactions PostReaction[]
+}
+
+model PostReaction {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String
+  emoji     String
+}
+
+model PostMedia {
+  id        String    @id @default(uuid())
+  index     Int
+  post      Post      @relation(fields: [postId], references: [id])
+  type      MediaType
+  fileUrl   String
+  fileS3Key String
+  postId    String
+}
+
+model PostComment {
+  id        String              @id @default(uuid())
+  createdAt DateTime            @default(now())
+  user      User                @relation(fields: [userId], references: [id])
+  userId    String
+  post      Post                @relation(fields: [postId], references: [id])
+  postId    String
+  text      String
+  answers   PostCommentAnswer[]
+}
+
+model PostCommentAnswer {
+  id         String      @id @default(uuid())
+  createdAt  DateTime    @default(now())
+  user       User        @relation(fields: [userId], references: [id])
+  userId     String
+  comment    PostComment @relation(fields: [commentId], references: [id])
+  commentId  String
+  textString String
 }
