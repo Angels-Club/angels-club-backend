@@ -12,7 +12,6 @@ export class PaymentProvider {
 
   constructor() {
     this.MP_SECRET_KEY = MP_SECRET_KEY;
-    mercadopago.configure({ access_token: this.MP_SECRET_KEY });
   }
 
   async generatePayment(
@@ -30,6 +29,7 @@ export class PaymentProvider {
     dto: CreateSignaturePlanDto,
   ): Promise<CreateSignaturePlanResponseDto> {
     try {
+      mercadopago.configure({ access_token: this.MP_SECRET_KEY });
       const response = await mercadoPagoInstance.post('/preapproval_plan', dto);
       console.log(response);
       return response.data;
