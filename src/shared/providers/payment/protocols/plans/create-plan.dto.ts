@@ -1,15 +1,15 @@
-export interface PlanAutoRecurring {
+export type PlanAutoRecurring = {
   frequency: number;
   frequency_type: string;
   transaction_amount: number;
   currency_id: 'BRL' | string;
-}
+};
 
-export interface PaymentType {
+export type PaymentType = {
   id: string;
-}
+};
 
-export interface CreateSignaturePlanDto {
+export type CreateSignaturePlanDto = {
   back_url: string;
   reason: string;
   auto_recurring: PlanAutoRecurring;
@@ -17,4 +17,4 @@ export interface CreateSignaturePlanDto {
     payment_types: PaymentType[];
     payment_methods?: PaymentType[];
   };
-}
+};

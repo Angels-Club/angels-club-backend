@@ -1,6 +1,6 @@
 import { PaymentPayerDto } from './payment-payer.dto';
 
-export interface CreatePaymentDto {
+export type CreatePaymentDto = {
   payer: PaymentPayerDto;
 
   /** Identificação fornecida pelo vendedor em seu sistema. */
@@ -23,4 +23,4 @@ export interface CreatePaymentDto {
 
   /** Quantidade selecionada de cotas. (Obrigatório) */
   installments: number;
-}
+};

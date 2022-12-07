@@ -1,6 +1,6 @@
 import { PaymentType, PlanAutoRecurring } from './create-plan.dto';
 
-export interface CreateSignaturePlanResponseDto {
+export type CreateSignaturePlanResponseDto = {
   id: string;
   application_id: number;
   collector_id: number;
@@ -16,4 +16,4 @@ export interface CreateSignaturePlanResponseDto {
   date_created: string;
   last_modified: string;
   status: string;
-}
+};

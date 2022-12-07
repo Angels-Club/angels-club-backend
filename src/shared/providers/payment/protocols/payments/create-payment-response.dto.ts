@@ -1,10 +1,10 @@
-export interface FeeDetails {
+export type FeeDetails = {
   type: 'mercadopago_fee' | string;
   amount: number;
   fee_payer: 'collector' | 'payer';
-}
+};
 
-export interface PointOfInteraction {
+export type PointOfInteraction = {
   type: string;
   sub_type: string;
   application_data: {
@@ -16,9 +16,9 @@ export interface PointOfInteraction {
     qr_code: string;
     ticket_url: string;
   };
-}
+};
 
-export interface CreatePaymentResponseDto {
+export type CreatePaymentResponseDto = {
   id: string;
   date_created: Date;
   date_approved: Date;
@@ -40,4 +40,4 @@ export interface CreatePaymentResponseDto {
   fee_details: FeeDetails[];
   captured: boolean;
   point_of_interaction: PointOfInteraction;
-}
+};

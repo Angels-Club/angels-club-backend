@@ -3,17 +3,17 @@ import jwt from 'jsonwebtoken';
 import { JWT_EXPIRATION, JWT_SECRET } from 'src/env';
 import { RolesType } from '../../types';
 
-interface ISignToken {
+type ISignToken = {
   id: string;
   role: RolesType;
-}
+};
 
-interface TokenPayload {
+type TokenPayload = {
   id: string;
   role: RolesType;
   iat: number;
   exp: number;
-}
+};
 
 @Injectable()
 export class TokenProvider {
