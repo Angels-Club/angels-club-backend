@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import { JWT_EXPIRATION, JWT_SECRET } from 'src/env';
 import { RolesType } from '../../types';
 
