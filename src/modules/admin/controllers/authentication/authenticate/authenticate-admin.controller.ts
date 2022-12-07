@@ -2,10 +2,13 @@ import {
   AuthenticateAdminDTO,
   AuthenticateAdminResponseDTO,
 } from 'src/modules/admin/dto';
+import {
+  HttpBadRequestError,
+  HttpUnauthorizedAuthenticationError,
+} from 'src/shared/swagger/http-errors';
 import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthenticateAdminUseCase } from 'src/modules/admin/use-cases';
-import { HttpUnauthorizedAuthenticationError } from 'src/shared/swagger/http-errors';
 
 @ApiTags('Admins Authentication')
 @Controller('admins')
@@ -18,6 +21,7 @@ export class AuthenticateAdminController {
     description: 'Success',
     type: AuthenticateAdminResponseDTO,
   })
+  @ApiResponse(HttpBadRequestError)
   @ApiResponse(HttpUnauthorizedAuthenticationError)
   @HttpCode(200)
   @Post('authenticate')
