@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AuthenticateAdminUseCase } from '.';
 import { AdminRepositoriesModule } from '../../repositories/admin-repositories.module';
+import { AuthenticateAdminUseCase, GetAdminInfoUseCase } from '.';
 
 @Module({
   imports: [AdminRepositoriesModule],
-  providers: [AuthenticateAdminUseCase],
-  exports: [AuthenticateAdminUseCase],
+  providers: [AuthenticateAdminUseCase, GetAdminInfoUseCase],
+  exports: [AuthenticateAdminUseCase, GetAdminInfoUseCase],
 })
 export class AdminAuthenticationUseCasesModule {}
