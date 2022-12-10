@@ -1,20 +1,20 @@
-export type PlanAutoRecurring = {
-  frequency: number;
-  frequency_type: string;
-  transaction_amount: number;
-  currency_id: 'BRL' | string;
-};
-
-export type PaymentType = {
-  id: string;
-};
-
-export type CreateSignaturePlanDto = {
-  back_url: string;
-  reason: string;
-  auto_recurring: PlanAutoRecurring;
-  payment_methods_allowed: {
-    payment_types: PaymentType[];
-    payment_methods?: PaymentType[];
-  };
+export type CreatePlanDto = {
+  name: string;
+  description?: string;
+  // Texto exibido na fatura do cartão.
+  statement_descriptor: string;
+  currency: 'BRL';
+  interval: 'day' | 'week' | 'month' | 'year';
+  interval_count: number;
+  trial_period_days?: number;
+  billing_type: 'prepaid';
+  items: {
+    name: string;
+    quantity: number;
+    description: string;
+    pricing_scheme: {
+      scheme_type: 'unit';
+      price: number;
+    };
+  }[];
 };

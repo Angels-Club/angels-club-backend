@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { MP_SECRET_KEY } from 'src/env';
+import { PAGARME_SECRET_KEY } from 'src/env';
 
-export const mercadoPagoInstance = axios.create({
-  baseURL: 'https://api.mercadopago.com',
-  headers: {
-    Authorization: `Bearer ${MP_SECRET_KEY}`,
+export const pagarmeInstance = axios.create({
+  baseURL: 'https://api.pagar.me/core/v5',
+  auth: {
+    username: PAGARME_SECRET_KEY,
+    password: '',
   },
 });
