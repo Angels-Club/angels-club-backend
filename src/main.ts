@@ -1,11 +1,11 @@
-import { ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './app.module';
-import { PORT, API_VERSION } from './env';
+import { ValidationPipe } from '@nestjs/common'
+import { NestFactory } from '@nestjs/core'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { AppModule } from './app.module'
+import { PORT, API_VERSION } from './env'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule)
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -14,12 +14,12 @@ async function bootstrap() {
       transformOptions: {
         enableImplicitConversion: true,
       },
-    }),
-  );
+    })
+  )
 
-  app.setGlobalPrefix(`api/${API_VERSION}`);
+  app.setGlobalPrefix(`api/${API_VERSION}`)
 
-  app.enableCors();
+  app.enableCors()
 
   const config = new DocumentBuilder()
     .setTitle('API Angels Club')
@@ -29,11 +29,11 @@ async function bootstrap() {
       type: 'http',
       scheme: 'bearer',
     })
-    .build();
+    .build()
 
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document);
+  const document = SwaggerModule.createDocument(app, config)
+  SwaggerModule.setup('api-docs', app, document)
 
-  await app.listen(PORT);
+  await app.listen(PORT)
 }
-bootstrap();
+bootstrap()

@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { AdminEntiy } from 'src/modules/admin/entities/admin.entity';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { Injectable } from '@nestjs/common'
+import { AdminEntiy } from 'src/modules/admin/entities/admin.entity'
+import { PrismaService } from 'src/prisma/prisma.service'
 
 @Injectable()
 export class LoadAdminByIdRepository {
@@ -8,9 +8,9 @@ export class LoadAdminByIdRepository {
 
   async loadById(id: string): Promise<AdminEntiy> {
     try {
-      return await this.prisma.admin.findUnique({ where: { id } });
+      return await this.prisma.admin.findUnique({ where: { id } })
     } catch (error) {
-      throw error;
+      throw error
     }
   }
 }

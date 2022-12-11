@@ -1,6 +1,6 @@
-import { Controller, Post } from '@nestjs/common';
-import { PaymentProvider } from './shared/providers';
-import { createPlan } from './test-objects';
+import { Controller, Post } from '@nestjs/common'
+import { PaymentProvider } from './shared/providers'
+import { createPlan } from './test-objects'
 
 @Controller('test')
 export class TestController {
@@ -8,6 +8,6 @@ export class TestController {
 
   @Post()
   async handle() {
-    return await this.payment.createPlan(createPlan);
+    return await this.payment.createPlan(createPlan)
   }
 }

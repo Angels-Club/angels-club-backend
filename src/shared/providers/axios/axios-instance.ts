@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { PAGARME_SECRET_KEY } from 'src/env';
+import axios from 'axios'
+import { PAGARME_SECRET_KEY } from 'src/env'
 
 export const pagarmeInstance = axios.create({
   baseURL: 'https://api.pagar.me/core/v5',
@@ -7,4 +7,4 @@ export const pagarmeInstance = axios.create({
     username: PAGARME_SECRET_KEY,
     password: '',
   },
-});
+})

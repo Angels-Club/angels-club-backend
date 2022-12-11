@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { AdminRepositoriesModule } from '../../repositories/admin-repositories.module';
-import { AuthenticateAdminUseCase, GetAdminInfoUseCase } from '.';
+import { Module } from '@nestjs/common'
+import { AdminRepositoriesModule } from '../../repositories/admin-repositories.module'
+import { AuthenticateAdminUseCase, GetAdminInfoUseCase } from '.'
 
 @Module({
   imports: [AdminRepositoriesModule],

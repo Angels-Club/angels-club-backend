@@ -1,120 +1,120 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger'
 
 export class BadRequestResponseExample {
   @ApiProperty({
     example: 400,
   })
-  statusCode: number;
+  statusCode: number
 
   @ApiProperty({
     example: 'One or more request fields are invalid',
   })
-  message: string;
+  message: string
 
   @ApiProperty({
     example: 'Bad Request',
   })
-  error: string;
+  error: string
 }
 
 export class UnauthorizedResponseExample {
   @ApiProperty({
     example: 401,
   })
-  statusCode: number;
+  statusCode: number
 
   @ApiProperty({
     example: 'Unauthorized!',
   })
-  message: string;
+  message: string
 
   @ApiProperty({
     example: 'Unauthorized',
   })
-  error: string;
+  error: string
 }
 
 export class UnauthorizedAuthenticationResponseExample {
   @ApiProperty({
     example: 401,
   })
-  statusCode: number;
+  statusCode: number
 
   @ApiProperty({
     example: 'Invalid Credentials',
   })
-  message: string;
+  message: string
 
   @ApiProperty({
     example: 'Unauthorized',
   })
-  error: string;
+  error: string
 }
 
 export class ForbiddenResponseExample {
   @ApiProperty({
     example: 403,
   })
-  statusCode: number;
+  statusCode: number
 
   @ApiProperty({
     example: 'Forbidden resource',
   })
-  message: string;
+  message: string
 
   @ApiProperty({
     example: 'Forbidden',
   })
-  error: string;
+  error: string
 }
 
 export class NotFoundResponseExample {
   @ApiProperty({
     example: 404,
   })
-  statusCode: number;
+  statusCode: number
 
   @ApiProperty({
     example: 'Entity was not found!',
   })
-  message: string;
+  message: string
 
   @ApiProperty({
     example: 'Not Found',
   })
-  error: string;
+  error: string
 }
 
 export class ConflictResponseExample {
   @ApiProperty({
     example: 409,
   })
-  statusCode: number;
+  statusCode: number
 
   @ApiProperty({
     example: 'An unique field is already in use!',
   })
-  message: string;
+  message: string
 
   @ApiProperty({
     example: 'Conflict',
   })
-  error: string;
+  error: string
 }
 
 export class InternalServerErrorResponseExample {
   @ApiProperty({
     example: 500,
   })
-  statusCode: number;
+  statusCode: number
 
   @ApiProperty({
     example: 'Internal Server Error',
   })
-  message: string;
+  message: string
 
   @ApiProperty({
     example: 'Internal Server Error',
   })
-  error: string;
+  error: string
 }

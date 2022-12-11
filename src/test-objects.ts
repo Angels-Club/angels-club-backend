@@ -1,4 +1,4 @@
-import { CreatePlanDto } from './shared/providers';
+import { CreatePlanDto } from './shared/providers'
 
 export const createRecipient = {
   name: 'Erick Scur Padilha',
@@ -21,7 +21,7 @@ export const createRecipient = {
     transfer_interval: 'daily',
     transfer_day: 0,
   },
-};
+}
 
 export const createPlan: CreatePlanDto = {
   name: 'Plano Heaven',
@@ -42,4 +42,4 @@ export const createPlan: CreatePlanDto = {
       },
     },
   ],
-};
+}
