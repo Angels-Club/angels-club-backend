@@ -33,6 +33,8 @@ model User {
   password          String
   fantasyName       String
   birthDate         String
+  cpf               String              @unique
+  pagarmeId         String?             @unique
   profilePictureId  String?
   PostComment       PostComment[]
   PostCommentAnswer PostCommentAnswer[]
@@ -85,7 +87,7 @@ model AngelPaidSignature {
   angelId            String @unique
   price              Float
   trimestralDiscount Float
-  mercadoPagoPlanId  String
+  pagarmePagoPlanId  String
 }
 
 enum PixKeyCategory {
@@ -95,15 +97,23 @@ enum PixKeyCategory {
   RANDOM
 }
 
+enum BankAccountType {
+  CHECKING
+  SAVINGS
+}
+
 model AngelBankData {
-  angel          Angel          @relation(fields: [angelId], references: [id])
-  angelId        String         @unique
-  bankCode       Int
-  bankName       String
-  bankAgency     Int
-  bankAccount    Int
-  pixKey         String
-  pixKeyCategory PixKeyCategory
+  angel           Angel           @relation(fields: [angelId], references: [id])
+  angelId         String          @unique
+  holderName      String
+  bankCode        String
+  bankName        String
+  bankAgency      String
+  bankAccount     String
+  bankCheckDigita String
+  bankAccountType BankAccountType
+  pixKey          String
+  pixKeyCategory  PixKeyCategory
 }
 
 model Pack {

@@ -1,10 +1,13 @@
-import { Module } from '@nestjs/common';
-import { PrismaModule } from 'src/prisma/prisma.module';
-import { LoadAdminByEmailRepository, LoadAdminByIdRepository } from '.';
+import { Module } from '@nestjs/common'
+import { PrismaModule } from 'src/prisma/prisma.module'
+import {
+  PrismaLoadAdminByEmailRepository,
+  PrismaLoadAdminByIdRepository,
+} from '.'
 
 @Module({
   imports: [PrismaModule],
-  exports: [LoadAdminByEmailRepository, LoadAdminByIdRepository],
-  providers: [LoadAdminByEmailRepository, LoadAdminByIdRepository],
+  providers: [PrismaLoadAdminByEmailRepository, PrismaLoadAdminByIdRepository],
+  exports: [PrismaLoadAdminByEmailRepository, PrismaLoadAdminByIdRepository],
 })
 export class AdminAuthenticationRepositoriesModule {}

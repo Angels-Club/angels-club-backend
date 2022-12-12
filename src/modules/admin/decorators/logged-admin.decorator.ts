@@ -1,20 +1,20 @@
-import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import { createParamDecorator, ExecutionContext } from '@nestjs/common'
 
 export type LoggedAdminType = {
-  id: string;
+  id: string
 
-  createdAt: Date;
+  createdAt: Date
 
-  updatedAt: Date;
+  updatedAt: Date
 
-  name: string;
+  name: string
 
-  email: string;
-};
+  email: string
+}
 
 export const LoggedAdmin = createParamDecorator(
   (data, context: ExecutionContext) => {
-    const request = context.switchToHttp().getRequest();
-    return request.admin;
-  },
-);
+    const request = context.switchToHttp().getRequest()
+    return request.admin
+  }
+)

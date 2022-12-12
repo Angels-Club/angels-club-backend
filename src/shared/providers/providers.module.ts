@@ -1,5 +1,5 @@
-import { Global, Module } from '@nestjs/common';
-import { EncryptionProvider, TokenProvider, PaymentProvider } from './';
+import { Global, Module } from '@nestjs/common'
+import { EncryptionProvider, TokenProvider, PaymentProvider } from './'
 
 @Global()
 @Module({
