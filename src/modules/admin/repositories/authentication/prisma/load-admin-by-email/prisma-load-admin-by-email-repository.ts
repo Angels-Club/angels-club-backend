@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common'
 import { AdminEntiy } from 'src/modules/admin/entities/admin.entity'
 import { PrismaService } from 'src/prisma/prisma.service'
+import { LoadAdminByEmailRepository } from '../../authentication-repositories-protocols'
 
 @Injectable()
-export class LoadAdminByEmailRepository {
+export class PrismaLoadAdminByEmailRepository
+  implements LoadAdminByEmailRepository
+{
   constructor(private readonly prisma: PrismaService) {}
 
   async loadByEmail(email: string): Promise<AdminEntiy> {

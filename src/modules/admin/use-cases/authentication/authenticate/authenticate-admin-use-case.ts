@@ -4,10 +4,12 @@ import {
 } from 'src/modules/admin/dto'
 import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { LoadAdminByEmailRepository } from 'src/modules/admin/repositories'
-import { EncryptionProvider, TokenProvider } from 'src/shared/providers'
+import { UseCase, EncryptionProvider, TokenProvider } from 'src/shared'
 
 @Injectable()
-export class AuthenticateAdminUseCase {
+export class AuthenticateAdminUseCase
+  implements UseCase<AuthenticateAdminDTO, AuthenticateAdminResponseDTO>
+{
   constructor(
     private readonly loadAccountByEmail: LoadAdminByEmailRepository,
     private readonly encryptionProvider: EncryptionProvider,

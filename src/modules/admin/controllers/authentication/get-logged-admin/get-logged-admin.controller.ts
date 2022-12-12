@@ -18,10 +18,13 @@ import { Controller, Get, UseGuards } from '@nestjs/common'
 import { GetAdminInfoResponseDTO } from 'src/modules/admin/dto/authentication/get-admin-info-response.dto'
 import { GetAdminInfoUseCase } from 'src/modules/admin/use-cases'
 import { AdminAuthGuard } from 'src/modules/admin/guards/admin-auth.guard'
+import { ControllerClass } from 'src/shared'
 
 @ApiTags('Admins Authentication')
 @Controller('admins')
-export class GetLoggedAdminController {
+export class GetLoggedAdminController
+  implements ControllerClass<GetAdminInfoResponseDTO>
+{
   constructor(private readonly getAdminInfoUC: GetAdminInfoUseCase) {}
 
   @ApiOperation({ summary: 'Get Logged Admin' })
@@ -36,7 +39,9 @@ export class GetLoggedAdminController {
   @ApiProperty(HttpNotFoundError)
   @UseGuards(AdminAuthGuard)
   @Get('me')
-  async handle(@LoggedAdmin() admin: LoggedAdminType) {
+  async handle(
+    @LoggedAdmin() admin: LoggedAdminType
+  ): Promise<GetAdminInfoResponseDTO> {
     return await this.getAdminInfoUC.execute(admin.id)
   }
 }
