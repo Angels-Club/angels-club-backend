@@ -16,7 +16,7 @@ import {
 } from 'src/modules/admin/decorators/logged-admin.decorator'
 import { Controller, Get, UseGuards } from '@nestjs/common'
 import { GetAdminInfoResponseDTO } from 'src/modules/admin/dto/authentication/get-admin-info-response.dto'
-import { GetAdminInfoUseCase } from 'src/modules/admin/use-cases'
+import { GetAdminInfo } from 'src/modules/admin/use-cases'
 import { AdminAuthGuard } from 'src/modules/admin/guards/admin-auth.guard'
 import { ControllerClass } from 'src/shared'
 
@@ -25,7 +25,7 @@ import { ControllerClass } from 'src/shared'
 export class GetLoggedAdminController
   implements ControllerClass<GetAdminInfoResponseDTO>
 {
-  constructor(private readonly getAdminInfoUC: GetAdminInfoUseCase) {}
+  constructor(private readonly getAdminInfoUC: GetAdminInfo) {}
 
   @ApiOperation({ summary: 'Get Logged Admin' })
   @ApiBearerAuth()

@@ -1,27 +1,10 @@
 import { Module } from '@nestjs/common'
 import { AdminRepositoriesModule } from '../../repositories/admin-repositories.module'
-import { AuthenticateAdminUseCase, GetAdminInfoUseCase } from '.'
-import {
-  LoadAdminByEmailRepository,
-  LoadAdminByIdRepository,
-  PrismaLoadAdminByEmailRepository,
-  PrismaLoadAdminByIdRepository,
-} from '../../repositories'
+import { AuthenticateAdmin, GetAdminInfo } from '.'
 
 @Module({
   imports: [AdminRepositoriesModule],
-  providers: [
-    AuthenticateAdminUseCase,
-    GetAdminInfoUseCase,
-    {
-      provide: LoadAdminByEmailRepository,
-      useClass: PrismaLoadAdminByEmailRepository,
-    },
-    {
-      provide: LoadAdminByIdRepository,
-      useClass: PrismaLoadAdminByIdRepository,
-    },
-  ],
-  exports: [AuthenticateAdminUseCase, GetAdminInfoUseCase],
+  providers: [AuthenticateAdmin, GetAdminInfo],
+  exports: [AuthenticateAdmin, GetAdminInfo],
 })
 export class AdminAuthenticationUseCasesModule {}

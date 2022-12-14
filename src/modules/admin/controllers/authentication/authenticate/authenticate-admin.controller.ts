@@ -8,7 +8,7 @@ import {
 } from 'src/shared/swagger/http-errors'
 import { Body, Controller, HttpCode, Post } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { AuthenticateAdminUseCase } from 'src/modules/admin/use-cases'
+import { AuthenticateAdmin } from 'src/modules/admin/use-cases'
 import { ControllerClass } from 'src/shared'
 
 @ApiTags('Admins Authentication')
@@ -16,7 +16,7 @@ import { ControllerClass } from 'src/shared'
 export class AuthenticateAdminController
   implements ControllerClass<AuthenticateAdminResponseDTO>
 {
-  constructor(private readonly authenticateAdminUC: AuthenticateAdminUseCase) {}
+  constructor(private readonly authenticateAdminUC: AuthenticateAdmin) {}
 
   @ApiOperation({ summary: 'Authenticate Admin' })
   @ApiResponse({

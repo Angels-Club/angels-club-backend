@@ -7,7 +7,7 @@ import { LoadAdminByEmailRepository } from 'src/modules/admin/repositories'
 import { UseCase, EncryptionProvider, TokenProvider } from 'src/shared'
 
 @Injectable()
-export class AuthenticateAdminUseCase
+export class AuthenticateAdmin
   implements UseCase<AuthenticateAdminDTO, AuthenticateAdminResponseDTO>
 {
   constructor(

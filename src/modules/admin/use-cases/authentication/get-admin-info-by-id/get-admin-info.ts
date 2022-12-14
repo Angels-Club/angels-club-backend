@@ -4,9 +4,7 @@ import { LoadAdminByIdRepository } from 'src/modules/admin/repositories'
 import { UseCase } from 'src/shared'
 
 @Injectable()
-export class GetAdminInfoUseCase
-  implements UseCase<string, GetAdminInfoResponseDTO>
-{
+export class GetAdminInfo implements UseCase<string, GetAdminInfoResponseDTO> {
   constructor(private readonly loadByIdRepository: LoadAdminByIdRepository) {}
 
   async execute(id: string): Promise<GetAdminInfoResponseDTO> {

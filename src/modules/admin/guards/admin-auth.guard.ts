@@ -5,12 +5,12 @@ import {
   UnauthorizedException,
 } from '@nestjs/common'
 import { TokenProvider } from 'src/shared/providers'
-import { GetAdminInfoUseCase } from '../use-cases'
+import { GetAdminInfo } from '../use-cases'
 
 @Injectable()
 export class AdminAuthGuard implements CanActivate {
   constructor(
-    private readonly getAdminInfo: GetAdminInfoUseCase,
+    private readonly getAdminInfo: GetAdminInfo,
     private readonly tokenProvider: TokenProvider
   ) {}
 
