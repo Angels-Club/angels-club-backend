@@ -8,7 +8,7 @@ import { UseCase, EncryptionProvider, TokenProvider } from 'src/shared'
 
 @Injectable()
 export class AuthenticateAdmin
-  implements UseCase<AuthenticateAdminDTO, AuthenticateAdminResponseDTO>
+  implements UseCase<AuthenticateAdminResponseDTO>
 {
   constructor(
     private readonly loadAccountByEmail: LoadAdminByEmailRepository,

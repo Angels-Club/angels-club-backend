@@ -1,3 +1,3 @@
-export abstract class UseCase<T, U> {
-  abstract execute(values: T, ...args: any[]): Promise<U>
+export abstract class UseCase<U> {
+  abstract execute(...args: any[]): Promise<U>
 }
